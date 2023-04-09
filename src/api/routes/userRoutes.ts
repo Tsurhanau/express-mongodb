@@ -3,12 +3,17 @@ import {
 	getUserById,
 	createUser,
 	updateUser,
-	getAutoSuggestUsers,
-	removeUser
+	removeUser,
+	getUsers,
 } from "../controllers/userController";
 
 export const router: Router = Router();
 
-router.route("/").post(createUser);
-router.route("/:id").get(getUserById).patch(updateUser).delete(removeUser);
-router.route("/auto-suggest/:limit/:subStr").get(getAutoSuggestUsers);
+router.route("/")
+	.post(createUser)
+	.get(getUsers);
+
+router.route("/:id")
+	.get(getUserById)
+	.put(updateUser)
+	.delete(removeUser);
