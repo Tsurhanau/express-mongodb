@@ -7,17 +7,14 @@ import { apiLogger } from "./middleware/api-logger";
 import { errorHandler } from "./middleware/error-handle";
 import { logger } from "./middleware/logger";
 import { loginRouter } from "./routes/loginRoutes";
-import { DB_CONNECTION_STRING, SERVER_PORT } from "./config";
+import { SERVER_PORT } from "./config";
 import { checkAuthToken } from "./middleware/auth";
+import { connectDB } from "./utils/connect-db";
 
-const mongoose = require("mongoose");
-
-mongoose
-.connect(DB_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => { console.log("Connected to MongoDB") })
-.catch((err: any) => { console.log(err) });
 
 const app: Express = express();
+
+connectDB();
 
 app.use(cors());
 app.use(express.json());
