@@ -6,14 +6,15 @@ import {
 	removeUser,
 	getUsers,
 } from "../controllers/userController";
+import { validateBody } from "../middleware/validate-body";
 
 export const router: Router = Router();
 
 router.route("/")
-	.post(createUser)
+	.post(validateBody, createUser)
 	.get(getUsers);
 
 router.route("/:id")
 	.get(getUserById)
-	.put(updateUser)
+	.put(validateBody, updateUser)
 	.delete(removeUser);
