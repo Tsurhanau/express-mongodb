@@ -29,7 +29,6 @@ export class UserService {
         return UserModel.findByIdAndDelete(id);
     }
 
-
     checkUserExist = async (login: string) => {
         return UserModel.findOne({ login: login });
     }
